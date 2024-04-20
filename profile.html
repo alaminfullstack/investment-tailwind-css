@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0 maximum-scale=1.0 user-scalable=0" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Kanit:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+        rel="stylesheet" />
+    <style>
+        :root {
+            --max-width: 1100px;
+            --border-radius: 12px;
+            --font-mono: ui-monospace, Menlo, Monaco, "Cascadia Mono",
+                "Segoe UI Mono", "Roboto Mono", "Oxygen Mono", "Ubuntu Monospace",
+                "Source Code Pro", "Fira Mono", "Droid Sans Mono", "Courier New",
+                monospace;
+            --foreground-rgb: 0, 0, 0;
+            --background-start-rgb: 214, 219, 220;
+            --background-end-rgb: 255, 255, 255;
+            --primary-glow: conic-gradient(from 180deg at 50% 50%,
+                    #16abff33 0deg,
+                    #0885ff33 55deg,
+                    #54d6ff33 120deg,
+                    #0071ff33 160deg,
+                    transparent 360deg);
+            --secondary-glow: radial-gradient(#fff, hsla(0, 0%, 100%, 0));
+            --tile-start-rgb: 239, 245, 249;
+            --tile-end-rgb: 228, 232, 233;
+            --tile-border: conic-gradient(#00000080,
+                    #00000040,
+                    #00000030,
+                    #00000020,
+                    #00000010,
+                    #00000010,
+                    #00000080);
+            --callout-rgb: 238, 240, 241;
+            --callout-border-rgb: 172, 175, 176;
+            --card-rgb: 180, 185, 188;
+            --card-border-rgb: 131, 134, 135;
+        }
+
+        * {
+            font-family: Kanit, cursive;
+            -webkit-touch-callout: none;
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            user-select: none;
+            box-sizing: border-box;
+            padding: 0;
+            margin: 0;
+        }
+
+        body {
+            color: rgb(var(--foreground-rgb));
+            background: linear-gradient(to bottom,
+                    transparent,
+                    rgb(var(--background-end-rgb))) rgb(var(--background-start-rgb));
+        }
+
+        #nprogress {
+            pointer-events: none;
+        }
+
+        #nprogress .bar {
+            background: #b72b41;
+            position: fixed;
+            z-index: 9999;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 3px;
+        }
+
+        #nprogress .peg {
+            display: block;
+            position: absolute;
+            right: 0px;
+            width: 100px;
+            height: 100%;
+            box-shadow: 0 0 10px #b72b41, 0 0 5px #b72b41;
+            opacity: 1;
+            -webkit-transform: rotate(3deg) translate(0px, -4px);
+            -ms-transform: rotate(3deg) translate(0px, -4px);
+            transform: rotate(3deg) translate(0px, -4px);
+        }
+
+        #nprogress .spinner {
+            display: block;
+            position: fixed;
+            z-index: 1031;
+            top: 15px;
+            right: 15px;
+        }
+
+        #nprogress .spinner-icon {
+            width: 18px;
+            height: 18px;
+            box-sizing: border-box;
+            border: solid 2px transparent;
+            border-top-color: #b72b41;
+            border-left-color: #b72b41;
+            border-radius: 50%;
+            -webkit-animation: nprogresss-spinner 400ms linear infinite;
+            animation: nprogress-spinner 400ms linear infinite;
+        }
+
+        .nprogress-custom-parent {
+            overflow: hidden;
+            position: relative;
+        }
+
+        .nprogress-custom-parent #nprogress .spinner,
+        .nprogress-custom-parent #nprogress .bar {
+            position: absolute;
+        }
+
+        @-webkit-keyframes nprogress-spinner {
+            0% {
+                -webkit-transform: rotate(0deg);
+            }
+
+            100% {
+                -webkit-transform: rotate(360deg);
+            }
+        }
+
+        @keyframes nprogress-spinner {
+            0% {
+                transform: rotate(0deg);
+            }
+
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="min-h-screen bg-[#ebebeb] pb-10">
+        <a href="index.html" class="h-14 w-full bg-[#0c0ce8] pl-4  gap-5 shadow text-white flex items-center "><svg
+                xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"
+                class="h-7 font-bold cursor-pointer w-7">
+                <path fill-rule="evenodd"
+                    d="M7.72 12.53a.75.75 0 010-1.06l7.5-7.5a.75.75 0 111.06 1.06L9.31 12l6.97 6.97a.75.75 0 11-1.06 1.06l-7.5-7.5z"
+                    clip-rule="evenodd"></path>
+            </svg>
+            <h2 class="text-xl font-bold">Profile </h2>
+        </a>
+        <div class="bg-white m-5 rounded-lg overflow-hidden">
+            <div class="flex p-4 bg-white items-center gap-2 border-b border-t border-gray-100"><span
+                    class="bg-[#0c0ce8] p-1 rounded-full text-white"><svg xmlns="http://www.w3.org/2000/svg"
+                        viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" class="h-5 cursor-pointer w-5 ">
+                        <path fill-rule="evenodd"
+                            d="M18.685 19.097A9.723 9.723 0 0021.75 12c0-5.385-4.365-9.75-9.75-9.75S2.25 6.615 2.25 12a9.723 9.723 0 003.065 7.097A9.716 9.716 0 0012 21.75a9.716 9.716 0 006.685-2.653zm-12.54-1.285A7.486 7.486 0 0112 15a7.486 7.486 0 015.855 2.812A8.224 8.224 0 0112 20.25a8.224 8.224 0 01-5.855-2.438zM15.75 9a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0z"
+                            clip-rule="evenodd"></path>
+                    </svg></span> Name: alamin</div>
+            <div class="flex p-4 bg-white items-center gap-2 border-b border-gray-100"><span
+                    class="bg-[#0c0ce8] p-1 rounded-full text-white"><svg xmlns="http://www.w3.org/2000/svg"
+                        viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" class="h-5 cursor-pointer w-5 ">
+                        <path fill-rule="evenodd"
+                            d="M1.5 4.5a3 3 0 013-3h1.372c.86 0 1.61.586 1.819 1.42l1.105 4.423a1.875 1.875 0 01-.694 1.955l-1.293.97c-.135.101-.164.249-.126.352a11.285 11.285 0 006.697 6.697c.103.038.25.009.352-.126l.97-1.293a1.875 1.875 0 011.955-.694l4.423 1.105c.834.209 1.42.959 1.42 1.82V19.5a3 3 0 01-3 3h-2.25C8.552 22.5 1.5 15.448 1.5 6.75V4.5z"
+                            clip-rule="evenodd"></path>
+                    </svg></span> Mobile Number: 01759216367</div>
+            <div class="flex p-4 bg-white items-center gap-2 border-b border-gray-100"><span
+                    class="bg-[#0c0ce8] p-1 rounded-full text-white"><svg xmlns="http://www.w3.org/2000/svg"
+                        viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" class="h-5 cursor-pointer w-5 ">
+                        <path fill-rule="evenodd"
+                            d="M12 21.75c5.385 0 9.75-4.365 9.75-9.75S17.385 2.25 12 2.25 2.25 6.615 2.25 12s4.365 9.75 9.75 9.75zM10.5 7.963a1.5 1.5 0 00-2.17-1.341l-.415.207a.75.75 0 00.67 1.342L9 7.963V9.75h-.75a.75.75 0 100 1.5H9v4.688c0 .563.26 1.198.867 1.525A4.501 4.501 0 0016.41 14.4c.199-.977-.636-1.649-1.415-1.649h-.745a.75.75 0 100 1.5h.656a3.002 3.002 0 01-4.327 1.893.113.113 0 01-.045-.051.336.336 0 01-.034-.154V11.25h5.25a.75.75 0 000-1.5H10.5V7.963z"
+                            clip-rule="evenodd"></path>
+                    </svg></span> Deposit Balance: 0 BDT</div>
+            <div class="flex p-4 bg-white items-center gap-2 border-b border-gray-100"><span
+                    class="bg-[#0c0ce8] p-1 rounded-full text-white"><svg xmlns="http://www.w3.org/2000/svg"
+                        viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" class="h-5 cursor-pointer w-5 ">
+                        <path fill-rule="evenodd"
+                            d="M12 21.75c5.385 0 9.75-4.365 9.75-9.75S17.385 2.25 12 2.25 2.25 6.615 2.25 12s4.365 9.75 9.75 9.75zM10.5 7.963a1.5 1.5 0 00-2.17-1.341l-.415.207a.75.75 0 00.67 1.342L9 7.963V9.75h-.75a.75.75 0 100 1.5H9v4.688c0 .563.26 1.198.867 1.525A4.501 4.501 0 0016.41 14.4c.199-.977-.636-1.649-1.415-1.649h-.745a.75.75 0 100 1.5h.656a3.002 3.002 0 01-4.327 1.893.113.113 0 01-.045-.051.336.336 0 01-.034-.154V11.25h5.25a.75.75 0 000-1.5H10.5V7.963z"
+                            clip-rule="evenodd"></path>
+                    </svg></span> Withdraw Balance: 0 BDT</div>
+            <div class="flex p-4 bg-white items-center gap-2 border-b border-gray-100"><span
+                    class="bg-[#0c0ce8] p-1 rounded-full text-white"><svg xmlns="http://www.w3.org/2000/svg"
+                        viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" class="h-5 cursor-pointer w-5 ">
+                        <path fill-rule="evenodd"
+                            d="M2.625 6.75a1.125 1.125 0 112.25 0 1.125 1.125 0 01-2.25 0zm4.875 0A.75.75 0 018.25 6h12a.75.75 0 010 1.5h-12a.75.75 0 01-.75-.75zM2.625 12a1.125 1.125 0 112.25 0 1.125 1.125 0 01-2.25 0zM7.5 12a.75.75 0 01.75-.75h12a.75.75 0 010 1.5h-12A.75.75 0 017.5 12zm-4.875 5.25a1.125 1.125 0 112.25 0 1.125 1.125 0 01-2.25 0zm4.875 0a.75.75 0 01.75-.75h12a.75.75 0 010 1.5h-12a.75.75 0 01-.75-.75z"
+                            clip-rule="evenodd"></path>
+                    </svg></span> Package: No Package</div>
+            <div class="flex p-4 bg-white items-center gap-2 border-b border-gray-100"><span
+                    class="bg-[#0c0ce8] p-1 rounded-full text-white"><svg xmlns="http://www.w3.org/2000/svg"
+                        viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" class="h-5 cursor-pointer w-5 ">
+                        <path
+                            d="M4.5 6.375a4.125 4.125 0 118.25 0 4.125 4.125 0 01-8.25 0zM14.25 8.625a3.375 3.375 0 116.75 0 3.375 3.375 0 01-6.75 0zM1.5 19.125a7.125 7.125 0 0114.25 0v.003l-.001.119a.75.75 0 01-.363.63 13.067 13.067 0 01-6.761 1.873c-2.472 0-4.786-.684-6.76-1.873a.75.75 0 01-.364-.63l-.001-.122zM17.25 19.128l-.001.144a2.25 2.25 0 01-.233.96 10.088 10.088 0 005.06-1.01.75.75 0 00.42-.643 4.875 4.875 0 00-6.957-4.611 8.586 8.586 0 011.71 5.157v.003z">
+                        </path>
+                    </svg></span> Refer Code: 1157737</div>
+            <div class="flex p-4 bg-white items-center gap-2 border-b border-gray-100"><span
+                    class="bg-[#0c0ce8] p-1 rounded-full text-white"><svg xmlns="http://www.w3.org/2000/svg"
+                        viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" class="h-5 cursor-pointer w-5 ">
+                        <path
+                            d="M6.25 6.375a4.125 4.125 0 118.25 0 4.125 4.125 0 01-8.25 0zM3.25 19.125a7.125 7.125 0 0114.25 0v.003l-.001.119a.75.75 0 01-.363.63 13.067 13.067 0 01-6.761 1.873c-2.472 0-4.786-.684-6.76-1.873a.75.75 0 01-.364-.63l-.001-.122zM19.75 7.5a.75.75 0 00-1.5 0v2.25H16a.75.75 0 000 1.5h2.25v2.25a.75.75 0 001.5 0v-2.25H22a.75.75 0 000-1.5h-2.25V7.5z">
+                        </path>
+                    </svg></span> Total Refer: 0</div>
+            <div class="flex p-4 bg-white items-center gap-2 border-b border-gray-100"><span
+                    class="bg-[#0c0ce8] p-1 rounded-full text-white"><svg xmlns="http://www.w3.org/2000/svg"
+                        viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" class="h-5 cursor-pointer w-5 ">
+                        <path fill-rule="evenodd"
+                            d="M7.5 5.25a3 3 0 013-3h3a3 3 0 013 3v.205c.933.085 1.857.197 2.774.334 1.454.218 2.476 1.483 2.476 2.917v3.033c0 1.211-.734 2.352-1.936 2.752A24.726 24.726 0 0112 15.75c-2.73 0-5.357-.442-7.814-1.259-1.202-.4-1.936-1.541-1.936-2.752V8.706c0-1.434 1.022-2.7 2.476-2.917A48.814 48.814 0 017.5 5.455V5.25zm7.5 0v.09a49.488 49.488 0 00-6 0v-.09a1.5 1.5 0 011.5-1.5h3a1.5 1.5 0 011.5 1.5zm-3 8.25a.75.75 0 100-1.5.75.75 0 000 1.5z"
+                            clip-rule="evenodd"></path>
+                        <path
+                            d="M3 18.4v-2.796a4.3 4.3 0 00.713.31A26.226 26.226 0 0012 17.25c2.892 0 5.68-.468 8.287-1.335.252-.084.49-.189.713-.311V18.4c0 1.452-1.047 2.728-2.523 2.923-2.12.282-4.282.427-6.477.427a49.19 49.19 0 01-6.477-.427C4.047 21.128 3 19.852 3 18.4z">
+                        </path>
+                    </svg></span> Task: 0</div>
+        </div>
+    </div>
+</body>
+
+</html>
