@@ -1,0 +1,534 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0 maximum-scale=1.0 user-scalable=0" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Kanit:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+        rel="stylesheet" />
+    <style>
+        :root {
+            --max-width: 1100px;
+            --border-radius: 12px;
+            --font-mono: ui-monospace, Menlo, Monaco, "Cascadia Mono",
+                "Segoe UI Mono", "Roboto Mono", "Oxygen Mono", "Ubuntu Monospace",
+                "Source Code Pro", "Fira Mono", "Droid Sans Mono", "Courier New",
+                monospace;
+            --foreground-rgb: 0, 0, 0;
+            --background-start-rgb: 214, 219, 220;
+            --background-end-rgb: 255, 255, 255;
+            --primary-glow: conic-gradient(from 180deg at 50% 50%,
+                    #16abff33 0deg,
+                    #0885ff33 55deg,
+                    #54d6ff33 120deg,
+                    #0071ff33 160deg,
+                    transparent 360deg);
+            --secondary-glow: radial-gradient(#fff, hsla(0, 0%, 100%, 0));
+            --tile-start-rgb: 239, 245, 249;
+            --tile-end-rgb: 228, 232, 233;
+            --tile-border: conic-gradient(#00000080,
+                    #00000040,
+                    #00000030,
+                    #00000020,
+                    #00000010,
+                    #00000010,
+                    #00000080);
+            --callout-rgb: 238, 240, 241;
+            --callout-border-rgb: 172, 175, 176;
+            --card-rgb: 180, 185, 188;
+            --card-border-rgb: 131, 134, 135;
+        }
+
+        * {
+            font-family: Kanit, cursive;
+            -webkit-touch-callout: none;
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            user-select: none;
+            box-sizing: border-box;
+            padding: 0;
+            margin: 0;
+        }
+
+        body {
+            color: rgb(var(--foreground-rgb));
+            background: linear-gradient(to bottom,
+                    transparent,
+                    rgb(var(--background-end-rgb))) rgb(var(--background-start-rgb));
+        }
+
+        #nprogress {
+            pointer-events: none;
+        }
+
+        #nprogress .bar {
+            background: #b72b41;
+            position: fixed;
+            z-index: 9999;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 3px;
+        }
+
+        #nprogress .peg {
+            display: block;
+            position: absolute;
+            right: 0px;
+            width: 100px;
+            height: 100%;
+            box-shadow: 0 0 10px #b72b41, 0 0 5px #b72b41;
+            opacity: 1;
+            -webkit-transform: rotate(3deg) translate(0px, -4px);
+            -ms-transform: rotate(3deg) translate(0px, -4px);
+            transform: rotate(3deg) translate(0px, -4px);
+        }
+
+        #nprogress .spinner {
+            display: block;
+            position: fixed;
+            z-index: 1031;
+            top: 15px;
+            right: 15px;
+        }
+
+        #nprogress .spinner-icon {
+            width: 18px;
+            height: 18px;
+            box-sizing: border-box;
+            border: solid 2px transparent;
+            border-top-color: #b72b41;
+            border-left-color: #b72b41;
+            border-radius: 50%;
+            -webkit-animation: nprogresss-spinner 400ms linear infinite;
+            animation: nprogress-spinner 400ms linear infinite;
+        }
+
+        .nprogress-custom-parent {
+            overflow: hidden;
+            position: relative;
+        }
+
+        .nprogress-custom-parent #nprogress .spinner,
+        .nprogress-custom-parent #nprogress .bar {
+            position: absolute;
+        }
+
+        @-webkit-keyframes nprogress-spinner {
+            0% {
+                -webkit-transform: rotate(0deg);
+            }
+
+            100% {
+                -webkit-transform: rotate(360deg);
+            }
+        }
+
+        @keyframes nprogress-spinner {
+            0% {
+                transform: rotate(0deg);
+            }
+
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="min-h-screen bg-[#eee] pb-10">
+        <a href="index.html" class="h-14 w-full bg-[#0c0ce8] pl-4  gap-5 shadow text-white flex items-center "><svg
+                xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"
+                class="h-7 font-bold cursor-pointer w-7">
+                <path fill-rule="evenodd"
+                    d="M7.72 12.53a.75.75 0 010-1.06l7.5-7.5a.75.75 0 111.06 1.06L9.31 12l6.97 6.97a.75.75 0 11-1.06 1.06l-7.5-7.5z"
+                    clip-rule="evenodd"></path>
+            </svg>
+            <h2 class="text-xl font-bold">Packages<!-- --> </h2>
+        </a>
+        <div class="grid grid-cols-2 gap-5 p-5">
+            <div class=" p-5 relative bg-white w-full overflow-hidden border border-gray-300 rounded-lg">
+                <div class=" bg-white">
+                    <h2 class="text-xl text-center font-bold whitespace-nowrap">Silver</h2>
+                    <p
+                        class="w-7 text-black h-7 bg-none flex justify-center items-center rounded-full absolute top-0 right-0">
+                        3x</p>
+                    <h2 class="text-lg text-center font-bold whitespace-nowrap">500৳</h2>
+                    <hr class="my-2">
+                    <div class="text-sm text-gray-700">
+                        <p class="flex gap-2 items-center"><svg stroke="currentColor" fill="currentColor"
+                                stroke-width="0" version="1" viewBox="0 0 48 48" enable-background="new 0 0 48 48"
+                                height="1em" width="1em" xmlns="http://www.w3.org/2000/svg">
+                                <polygon fill="#8BC34A"
+                                    points="24,3 28.7,6.6 34.5,5.8 36.7,11.3 42.2,13.5 41.4,19.3 45,24 41.4,28.7 42.2,34.5 36.7,36.7 34.5,42.2 28.7,41.4 24,45 19.3,41.4 13.5,42.2 11.3,36.7 5.8,34.5 6.6,28.7 3,24 6.6,19.3 5.8,13.5 11.3,11.3 13.5,5.8 19.3,6.6">
+                                </polygon>
+                                <polygon fill="#CCFF90"
+                                    points="34.6,14.6 21,28.2 15.4,22.6 12.6,25.4 21,33.8 37.4,17.4"></polygon>
+                            </svg> Daily 1 Ads </p>
+                        <p class="flex gap-2 items-center"><svg stroke="currentColor" fill="currentColor"
+                                stroke-width="0" version="1" viewBox="0 0 48 48" enable-background="new 0 0 48 48"
+                                height="1em" width="1em" xmlns="http://www.w3.org/2000/svg">
+                                <polygon fill="#8BC34A"
+                                    points="24,3 28.7,6.6 34.5,5.8 36.7,11.3 42.2,13.5 41.4,19.3 45,24 41.4,28.7 42.2,34.5 36.7,36.7 34.5,42.2 28.7,41.4 24,45 19.3,41.4 13.5,42.2 11.3,36.7 5.8,34.5 6.6,28.7 3,24 6.6,19.3 5.8,13.5 11.3,11.3 13.5,5.8 19.3,6.6">
+                                </polygon>
+                                <polygon fill="#CCFF90"
+                                    points="34.6,14.6 21,28.2 15.4,22.6 12.6,25.4 21,33.8 37.4,17.4"></polygon>
+                            </svg> Daily Income 100৳ </p>
+                        <p class="flex gap-2 items-center"><svg stroke="currentColor" fill="currentColor"
+                                stroke-width="0" version="1" viewBox="0 0 48 48" enable-background="new 0 0 48 48"
+                                height="1em" width="1em" xmlns="http://www.w3.org/2000/svg">
+                                <polygon fill="#8BC34A"
+                                    points="24,3 28.7,6.6 34.5,5.8 36.7,11.3 42.2,13.5 41.4,19.3 45,24 41.4,28.7 42.2,34.5 36.7,36.7 34.5,42.2 28.7,41.4 24,45 19.3,41.4 13.5,42.2 11.3,36.7 5.8,34.5 6.6,28.7 3,24 6.6,19.3 5.8,13.5 11.3,11.3 13.5,5.8 19.3,6.6">
+                                </polygon>
+                                <polygon fill="#CCFF90"
+                                    points="34.6,14.6 21,28.2 15.4,22.6 12.6,25.4 21,33.8 37.4,17.4"></polygon>
+                            </svg> Validity 200 days </p>
+                    </div><button data-title="Silver" data-price="500 BDT"
+                        class="buyBtn align-middle select-none font-sans font-bold text-center uppercase transition-all disabled:opacity-50 disabled:shadow-none disabled:pointer-events-none text-xs py-2 px-4 shadow-blue-500/20 hover:shadow-lg hover:shadow-blue-500/40 focus:opacity-[0.85] focus:shadow-none active:opacity-[0.85] active:shadow-none block w-full bg-[#0f9b0f] text-white mt-4 border shadow-none rounded-lg"
+                        type="button" style="position: relative; overflow: hidden;"> Buy now </button>
+                </div>
+            </div>
+            <div class=" p-5 relative bg-white w-full overflow-hidden border border-gray-300 rounded-lg">
+                <div class=" bg-white">
+                    <h2 class="text-xl text-center font-bold whitespace-nowrap">Silver 2</h2>
+                    <p
+                        class="w-7 text-black h-7 bg-none flex justify-center items-center rounded-full absolute top-0 right-0">
+                        3x</p>
+                    <h2 class="text-lg text-center font-bold whitespace-nowrap">1000৳</h2>
+                    <hr class="my-2">
+                    <div class="text-sm text-gray-700">
+                        <p class="flex gap-2 items-center"><svg stroke="currentColor" fill="currentColor"
+                                stroke-width="0" version="1" viewBox="0 0 48 48" enable-background="new 0 0 48 48"
+                                height="1em" width="1em" xmlns="http://www.w3.org/2000/svg">
+                                <polygon fill="#8BC34A"
+                                    points="24,3 28.7,6.6 34.5,5.8 36.7,11.3 42.2,13.5 41.4,19.3 45,24 41.4,28.7 42.2,34.5 36.7,36.7 34.5,42.2 28.7,41.4 24,45 19.3,41.4 13.5,42.2 11.3,36.7 5.8,34.5 6.6,28.7 3,24 6.6,19.3 5.8,13.5 11.3,11.3 13.5,5.8 19.3,6.6">
+                                </polygon>
+                                <polygon fill="#CCFF90"
+                                    points="34.6,14.6 21,28.2 15.4,22.6 12.6,25.4 21,33.8 37.4,17.4"></polygon>
+                            </svg> Daily 3 Ads </p>
+                        <p class="flex gap-2 items-center"><svg stroke="currentColor" fill="currentColor"
+                                stroke-width="0" version="1" viewBox="0 0 48 48" enable-background="new 0 0 48 48"
+                                height="1em" width="1em" xmlns="http://www.w3.org/2000/svg">
+                                <polygon fill="#8BC34A"
+                                    points="24,3 28.7,6.6 34.5,5.8 36.7,11.3 42.2,13.5 41.4,19.3 45,24 41.4,28.7 42.2,34.5 36.7,36.7 34.5,42.2 28.7,41.4 24,45 19.3,41.4 13.5,42.2 11.3,36.7 5.8,34.5 6.6,28.7 3,24 6.6,19.3 5.8,13.5 11.3,11.3 13.5,5.8 19.3,6.6">
+                                </polygon>
+                                <polygon fill="#CCFF90"
+                                    points="34.6,14.6 21,28.2 15.4,22.6 12.6,25.4 21,33.8 37.4,17.4"></polygon>
+                            </svg> Daily Income 300৳ </p>
+                        <p class="flex gap-2 items-center"><svg stroke="currentColor" fill="currentColor"
+                                stroke-width="0" version="1" viewBox="0 0 48 48" enable-background="new 0 0 48 48"
+                                height="1em" width="1em" xmlns="http://www.w3.org/2000/svg">
+                                <polygon fill="#8BC34A"
+                                    points="24,3 28.7,6.6 34.5,5.8 36.7,11.3 42.2,13.5 41.4,19.3 45,24 41.4,28.7 42.2,34.5 36.7,36.7 34.5,42.2 28.7,41.4 24,45 19.3,41.4 13.5,42.2 11.3,36.7 5.8,34.5 6.6,28.7 3,24 6.6,19.3 5.8,13.5 11.3,11.3 13.5,5.8 19.3,6.6">
+                                </polygon>
+                                <polygon fill="#CCFF90"
+                                    points="34.6,14.6 21,28.2 15.4,22.6 12.6,25.4 21,33.8 37.4,17.4"></polygon>
+                            </svg> Validity 210 days </p>
+                    </div><button data-title="Silver 2" data-price="1000 BDT"
+                        class="buyBtn align-middle select-none font-sans font-bold text-center uppercase transition-all disabled:opacity-50 disabled:shadow-none disabled:pointer-events-none text-xs py-2 px-4 shadow-blue-500/20 hover:shadow-lg hover:shadow-blue-500/40 focus:opacity-[0.85] focus:shadow-none active:opacity-[0.85] active:shadow-none block w-full bg-[#0f9b0f] text-white mt-4 border shadow-none rounded-lg"
+                        type="button"> Buy now </button>
+                </div>
+            </div>
+            <div class=" p-5 relative bg-white w-full overflow-hidden border border-gray-300 rounded-lg">
+                <div class=" bg-white">
+                    <h2 class="text-xl text-center font-bold whitespace-nowrap">Gold</h2>
+                    <p
+                        class="w-7 text-black h-7 bg-none flex justify-center items-center rounded-full absolute top-0 right-0">
+                        3x</p>
+                    <h2 class="text-lg text-center font-bold whitespace-nowrap">2000৳</h2>
+                    <hr class="my-2">
+                    <div class="text-sm text-gray-700">
+                        <p class="flex gap-2 items-center"><svg stroke="currentColor" fill="currentColor"
+                                stroke-width="0" version="1" viewBox="0 0 48 48" enable-background="new 0 0 48 48"
+                                height="1em" width="1em" xmlns="http://www.w3.org/2000/svg">
+                                <polygon fill="#8BC34A"
+                                    points="24,3 28.7,6.6 34.5,5.8 36.7,11.3 42.2,13.5 41.4,19.3 45,24 41.4,28.7 42.2,34.5 36.7,36.7 34.5,42.2 28.7,41.4 24,45 19.3,41.4 13.5,42.2 11.3,36.7 5.8,34.5 6.6,28.7 3,24 6.6,19.3 5.8,13.5 11.3,11.3 13.5,5.8 19.3,6.6">
+                                </polygon>
+                                <polygon fill="#CCFF90"
+                                    points="34.6,14.6 21,28.2 15.4,22.6 12.6,25.4 21,33.8 37.4,17.4"></polygon>
+                            </svg> Daily 6 Ads </p>
+                        <p class="flex gap-2 items-center"><svg stroke="currentColor" fill="currentColor"
+                                stroke-width="0" version="1" viewBox="0 0 48 48" enable-background="new 0 0 48 48"
+                                height="1em" width="1em" xmlns="http://www.w3.org/2000/svg">
+                                <polygon fill="#8BC34A"
+                                    points="24,3 28.7,6.6 34.5,5.8 36.7,11.3 42.2,13.5 41.4,19.3 45,24 41.4,28.7 42.2,34.5 36.7,36.7 34.5,42.2 28.7,41.4 24,45 19.3,41.4 13.5,42.2 11.3,36.7 5.8,34.5 6.6,28.7 3,24 6.6,19.3 5.8,13.5 11.3,11.3 13.5,5.8 19.3,6.6">
+                                </polygon>
+                                <polygon fill="#CCFF90"
+                                    points="34.6,14.6 21,28.2 15.4,22.6 12.6,25.4 21,33.8 37.4,17.4"></polygon>
+                            </svg> Daily Income 600৳ </p>
+                        <p class="flex gap-2 items-center"><svg stroke="currentColor" fill="currentColor"
+                                stroke-width="0" version="1" viewBox="0 0 48 48" enable-background="new 0 0 48 48"
+                                height="1em" width="1em" xmlns="http://www.w3.org/2000/svg">
+                                <polygon fill="#8BC34A"
+                                    points="24,3 28.7,6.6 34.5,5.8 36.7,11.3 42.2,13.5 41.4,19.3 45,24 41.4,28.7 42.2,34.5 36.7,36.7 34.5,42.2 28.7,41.4 24,45 19.3,41.4 13.5,42.2 11.3,36.7 5.8,34.5 6.6,28.7 3,24 6.6,19.3 5.8,13.5 11.3,11.3 13.5,5.8 19.3,6.6">
+                                </polygon>
+                                <polygon fill="#CCFF90"
+                                    points="34.6,14.6 21,28.2 15.4,22.6 12.6,25.4 21,33.8 37.4,17.4"></polygon>
+                            </svg> Validity 210 days </p>
+                    </div><button data-title="Gold" data-price="2000 BDT"
+                        class="buyBtn align-middle select-none font-sans font-bold text-center uppercase transition-all disabled:opacity-50 disabled:shadow-none disabled:pointer-events-none text-xs py-2 px-4 shadow-blue-500/20 hover:shadow-lg hover:shadow-blue-500/40 focus:opacity-[0.85] focus:shadow-none active:opacity-[0.85] active:shadow-none block w-full bg-[#0f9b0f] text-white mt-4 border shadow-none rounded-lg"
+                        type="button"> Buy now </button>
+                </div>
+            </div>
+            <div class=" p-5 relative bg-white w-full overflow-hidden border border-gray-300 rounded-lg">
+                <div class=" bg-white">
+                    <h2 class="text-xl text-center font-bold whitespace-nowrap">Gold 2</h2>
+                    <p
+                        class="w-7 text-black h-7 bg-none flex justify-center items-center rounded-full absolute top-0 right-0">
+                        3x</p>
+                    <h2 class="text-lg text-center font-bold whitespace-nowrap">5000৳</h2>
+                    <hr class="my-2">
+                    <div class="text-sm text-gray-700">
+                        <p class="flex gap-2 items-center"><svg stroke="currentColor" fill="currentColor"
+                                stroke-width="0" version="1" viewBox="0 0 48 48" enable-background="new 0 0 48 48"
+                                height="1em" width="1em" xmlns="http://www.w3.org/2000/svg">
+                                <polygon fill="#8BC34A"
+                                    points="24,3 28.7,6.6 34.5,5.8 36.7,11.3 42.2,13.5 41.4,19.3 45,24 41.4,28.7 42.2,34.5 36.7,36.7 34.5,42.2 28.7,41.4 24,45 19.3,41.4 13.5,42.2 11.3,36.7 5.8,34.5 6.6,28.7 3,24 6.6,19.3 5.8,13.5 11.3,11.3 13.5,5.8 19.3,6.6">
+                                </polygon>
+                                <polygon fill="#CCFF90"
+                                    points="34.6,14.6 21,28.2 15.4,22.6 12.6,25.4 21,33.8 37.4,17.4"></polygon>
+                            </svg> Daily 15 Ads </p>
+                        <p class="flex gap-2 items-center"><svg stroke="currentColor" fill="currentColor"
+                                stroke-width="0" version="1" viewBox="0 0 48 48" enable-background="new 0 0 48 48"
+                                height="1em" width="1em" xmlns="http://www.w3.org/2000/svg">
+                                <polygon fill="#8BC34A"
+                                    points="24,3 28.7,6.6 34.5,5.8 36.7,11.3 42.2,13.5 41.4,19.3 45,24 41.4,28.7 42.2,34.5 36.7,36.7 34.5,42.2 28.7,41.4 24,45 19.3,41.4 13.5,42.2 11.3,36.7 5.8,34.5 6.6,28.7 3,24 6.6,19.3 5.8,13.5 11.3,11.3 13.5,5.8 19.3,6.6">
+                                </polygon>
+                                <polygon fill="#CCFF90"
+                                    points="34.6,14.6 21,28.2 15.4,22.6 12.6,25.4 21,33.8 37.4,17.4"></polygon>
+                            </svg> Daily Income 1500৳ </p>
+                        <p class="flex gap-2 items-center"><svg stroke="currentColor" fill="currentColor"
+                                stroke-width="0" version="1" viewBox="0 0 48 48" enable-background="new 0 0 48 48"
+                                height="1em" width="1em" xmlns="http://www.w3.org/2000/svg">
+                                <polygon fill="#8BC34A"
+                                    points="24,3 28.7,6.6 34.5,5.8 36.7,11.3 42.2,13.5 41.4,19.3 45,24 41.4,28.7 42.2,34.5 36.7,36.7 34.5,42.2 28.7,41.4 24,45 19.3,41.4 13.5,42.2 11.3,36.7 5.8,34.5 6.6,28.7 3,24 6.6,19.3 5.8,13.5 11.3,11.3 13.5,5.8 19.3,6.6">
+                                </polygon>
+                                <polygon fill="#CCFF90"
+                                    points="34.6,14.6 21,28.2 15.4,22.6 12.6,25.4 21,33.8 37.4,17.4"></polygon>
+                            </svg> Validity 300 days </p>
+                    </div><button data-title="Gold 2" data-price="5000 BDT"
+                        class="buyBtn align-middle select-none font-sans font-bold text-center uppercase transition-all disabled:opacity-50 disabled:shadow-none disabled:pointer-events-none text-xs py-2 px-4 shadow-blue-500/20 hover:shadow-lg hover:shadow-blue-500/40 focus:opacity-[0.85] focus:shadow-none active:opacity-[0.85] active:shadow-none block w-full bg-[#0f9b0f] text-white mt-4 border shadow-none rounded-lg"
+                        type="button"> Buy now </button>
+                </div>
+            </div>
+            <div class=" p-5 relative bg-white w-full overflow-hidden border border-gray-300 rounded-lg">
+                <div class=" bg-white">
+                    <h2 class="text-xl text-center font-bold whitespace-nowrap">Platinum</h2>
+                    <p
+                        class="w-7 text-black h-7 bg-none flex justify-center items-center rounded-full absolute top-0 right-0">
+                        3x</p>
+                    <h2 class="text-lg text-center font-bold whitespace-nowrap">8000৳</h2>
+                    <hr class="my-2">
+                    <div class="text-sm text-gray-700">
+                        <p class="flex gap-2 items-center"><svg stroke="currentColor" fill="currentColor"
+                                stroke-width="0" version="1" viewBox="0 0 48 48" enable-background="new 0 0 48 48"
+                                height="1em" width="1em" xmlns="http://www.w3.org/2000/svg">
+                                <polygon fill="#8BC34A"
+                                    points="24,3 28.7,6.6 34.5,5.8 36.7,11.3 42.2,13.5 41.4,19.3 45,24 41.4,28.7 42.2,34.5 36.7,36.7 34.5,42.2 28.7,41.4 24,45 19.3,41.4 13.5,42.2 11.3,36.7 5.8,34.5 6.6,28.7 3,24 6.6,19.3 5.8,13.5 11.3,11.3 13.5,5.8 19.3,6.6">
+                                </polygon>
+                                <polygon fill="#CCFF90"
+                                    points="34.6,14.6 21,28.2 15.4,22.6 12.6,25.4 21,33.8 37.4,17.4"></polygon>
+                            </svg> Daily 30 Ads </p>
+                        <p class="flex gap-2 items-center"><svg stroke="currentColor" fill="currentColor"
+                                stroke-width="0" version="1" viewBox="0 0 48 48" enable-background="new 0 0 48 48"
+                                height="1em" width="1em" xmlns="http://www.w3.org/2000/svg">
+                                <polygon fill="#8BC34A"
+                                    points="24,3 28.7,6.6 34.5,5.8 36.7,11.3 42.2,13.5 41.4,19.3 45,24 41.4,28.7 42.2,34.5 36.7,36.7 34.5,42.2 28.7,41.4 24,45 19.3,41.4 13.5,42.2 11.3,36.7 5.8,34.5 6.6,28.7 3,24 6.6,19.3 5.8,13.5 11.3,11.3 13.5,5.8 19.3,6.6">
+                                </polygon>
+                                <polygon fill="#CCFF90"
+                                    points="34.6,14.6 21,28.2 15.4,22.6 12.6,25.4 21,33.8 37.4,17.4"></polygon>
+                            </svg> Daily Income 3000৳ </p>
+                        <p class="flex gap-2 items-center"><svg stroke="currentColor" fill="currentColor"
+                                stroke-width="0" version="1" viewBox="0 0 48 48" enable-background="new 0 0 48 48"
+                                height="1em" width="1em" xmlns="http://www.w3.org/2000/svg">
+                                <polygon fill="#8BC34A"
+                                    points="24,3 28.7,6.6 34.5,5.8 36.7,11.3 42.2,13.5 41.4,19.3 45,24 41.4,28.7 42.2,34.5 36.7,36.7 34.5,42.2 28.7,41.4 24,45 19.3,41.4 13.5,42.2 11.3,36.7 5.8,34.5 6.6,28.7 3,24 6.6,19.3 5.8,13.5 11.3,11.3 13.5,5.8 19.3,6.6">
+                                </polygon>
+                                <polygon fill="#CCFF90"
+                                    points="34.6,14.6 21,28.2 15.4,22.6 12.6,25.4 21,33.8 37.4,17.4"></polygon>
+                            </svg> Validity 320 days </p>
+                    </div><button data-title="Platinum" data-price="8000 BDT"
+                        class="buyBtn align-middle select-none font-sans font-bold text-center uppercase transition-all disabled:opacity-50 disabled:shadow-none disabled:pointer-events-none text-xs py-2 px-4 shadow-blue-500/20 hover:shadow-lg hover:shadow-blue-500/40 focus:opacity-[0.85] focus:shadow-none active:opacity-[0.85] active:shadow-none block w-full bg-[#0f9b0f] text-white mt-4 border shadow-none rounded-lg"
+                        type="button"> Buy now </button>
+                </div>
+            </div>
+            <div class=" p-5 relative bg-white w-full overflow-hidden border border-gray-300 rounded-lg">
+                <div class=" bg-white">
+                    <h2 class="text-xl text-center font-bold whitespace-nowrap">Platinum Max</h2>
+                    <p
+                        class="w-7 text-black h-7 bg-none flex justify-center items-center rounded-full absolute top-0 right-0">
+                        3x</p>
+                    <h2 class="text-lg text-center font-bold whitespace-nowrap">20000৳</h2>
+                    <hr class="my-2">
+                    <div class="text-sm text-gray-700">
+                        <p class="flex gap-2 items-center"><svg stroke="currentColor" fill="currentColor"
+                                stroke-width="0" version="1" viewBox="0 0 48 48" enable-background="new 0 0 48 48"
+                                height="1em" width="1em" xmlns="http://www.w3.org/2000/svg">
+                                <polygon fill="#8BC34A"
+                                    points="24,3 28.7,6.6 34.5,5.8 36.7,11.3 42.2,13.5 41.4,19.3 45,24 41.4,28.7 42.2,34.5 36.7,36.7 34.5,42.2 28.7,41.4 24,45 19.3,41.4 13.5,42.2 11.3,36.7 5.8,34.5 6.6,28.7 3,24 6.6,19.3 5.8,13.5 11.3,11.3 13.5,5.8 19.3,6.6">
+                                </polygon>
+                                <polygon fill="#CCFF90"
+                                    points="34.6,14.6 21,28.2 15.4,22.6 12.6,25.4 21,33.8 37.4,17.4"></polygon>
+                            </svg> Daily 120 Ads </p>
+                        <p class="flex gap-2 items-center"><svg stroke="currentColor" fill="currentColor"
+                                stroke-width="0" version="1" viewBox="0 0 48 48" enable-background="new 0 0 48 48"
+                                height="1em" width="1em" xmlns="http://www.w3.org/2000/svg">
+                                <polygon fill="#8BC34A"
+                                    points="24,3 28.7,6.6 34.5,5.8 36.7,11.3 42.2,13.5 41.4,19.3 45,24 41.4,28.7 42.2,34.5 36.7,36.7 34.5,42.2 28.7,41.4 24,45 19.3,41.4 13.5,42.2 11.3,36.7 5.8,34.5 6.6,28.7 3,24 6.6,19.3 5.8,13.5 11.3,11.3 13.5,5.8 19.3,6.6">
+                                </polygon>
+                                <polygon fill="#CCFF90"
+                                    points="34.6,14.6 21,28.2 15.4,22.6 12.6,25.4 21,33.8 37.4,17.4"></polygon>
+                            </svg> Daily Income 12000৳ </p>
+                        <p class="flex gap-2 items-center"><svg stroke="currentColor" fill="currentColor"
+                                stroke-width="0" version="1" viewBox="0 0 48 48" enable-background="new 0 0 48 48"
+                                height="1em" width="1em" xmlns="http://www.w3.org/2000/svg">
+                                <polygon fill="#8BC34A"
+                                    points="24,3 28.7,6.6 34.5,5.8 36.7,11.3 42.2,13.5 41.4,19.3 45,24 41.4,28.7 42.2,34.5 36.7,36.7 34.5,42.2 28.7,41.4 24,45 19.3,41.4 13.5,42.2 11.3,36.7 5.8,34.5 6.6,28.7 3,24 6.6,19.3 5.8,13.5 11.3,11.3 13.5,5.8 19.3,6.6">
+                                </polygon>
+                                <polygon fill="#CCFF90"
+                                    points="34.6,14.6 21,28.2 15.4,22.6 12.6,25.4 21,33.8 37.4,17.4"></polygon>
+                            </svg> Validity 400 days </p>
+                    </div><button data-title="Platinum Max" data-price="20000 BDT"
+                        class="buyBtn align-middle select-none font-sans font-bold text-center uppercase transition-all disabled:opacity-50 disabled:shadow-none disabled:pointer-events-none text-xs py-2 px-4 shadow-blue-500/20 hover:shadow-lg hover:shadow-blue-500/40 focus:opacity-[0.85] focus:shadow-none active:opacity-[0.85] active:shadow-none block w-full bg-[#0f9b0f] text-white mt-4 border shadow-none rounded-lg"
+                        type="button"> Buy now </button>
+                </div>
+            </div>
+            <div class=" p-5 relative bg-white w-full overflow-hidden border border-gray-300 rounded-lg">
+                <div class=" bg-white">
+                    <h2 class="text-xl text-center font-bold whitespace-nowrap">Platinum Gold</h2>
+                    <p
+                        class="w-7 text-black h-7 bg-none flex justify-center items-center rounded-full absolute top-0 right-0">
+                        3x</p>
+                    <h2 class="text-lg text-center font-bold whitespace-nowrap">40000৳</h2>
+                    <hr class="my-2">
+                    <div class="text-sm text-gray-700">
+                        <p class="flex gap-2 items-center"><svg stroke="currentColor" fill="currentColor"
+                                stroke-width="0" version="1" viewBox="0 0 48 48" enable-background="new 0 0 48 48"
+                                height="1em" width="1em" xmlns="http://www.w3.org/2000/svg">
+                                <polygon fill="#8BC34A"
+                                    points="24,3 28.7,6.6 34.5,5.8 36.7,11.3 42.2,13.5 41.4,19.3 45,24 41.4,28.7 42.2,34.5 36.7,36.7 34.5,42.2 28.7,41.4 24,45 19.3,41.4 13.5,42.2 11.3,36.7 5.8,34.5 6.6,28.7 3,24 6.6,19.3 5.8,13.5 11.3,11.3 13.5,5.8 19.3,6.6">
+                                </polygon>
+                                <polygon fill="#CCFF90"
+                                    points="34.6,14.6 21,28.2 15.4,22.6 12.6,25.4 21,33.8 37.4,17.4"></polygon>
+                            </svg> Daily 240 Ads </p>
+                        <p class="flex gap-2 items-center"><svg stroke="currentColor" fill="currentColor"
+                                stroke-width="0" version="1" viewBox="0 0 48 48" enable-background="new 0 0 48 48"
+                                height="1em" width="1em" xmlns="http://www.w3.org/2000/svg">
+                                <polygon fill="#8BC34A"
+                                    points="24,3 28.7,6.6 34.5,5.8 36.7,11.3 42.2,13.5 41.4,19.3 45,24 41.4,28.7 42.2,34.5 36.7,36.7 34.5,42.2 28.7,41.4 24,45 19.3,41.4 13.5,42.2 11.3,36.7 5.8,34.5 6.6,28.7 3,24 6.6,19.3 5.8,13.5 11.3,11.3 13.5,5.8 19.3,6.6">
+                                </polygon>
+                                <polygon fill="#CCFF90"
+                                    points="34.6,14.6 21,28.2 15.4,22.6 12.6,25.4 21,33.8 37.4,17.4"></polygon>
+                            </svg> Daily Income 24000৳ </p>
+                        <p class="flex gap-2 items-center"><svg stroke="currentColor" fill="currentColor"
+                                stroke-width="0" version="1" viewBox="0 0 48 48" enable-background="new 0 0 48 48"
+                                height="1em" width="1em" xmlns="http://www.w3.org/2000/svg">
+                                <polygon fill="#8BC34A"
+                                    points="24,3 28.7,6.6 34.5,5.8 36.7,11.3 42.2,13.5 41.4,19.3 45,24 41.4,28.7 42.2,34.5 36.7,36.7 34.5,42.2 28.7,41.4 24,45 19.3,41.4 13.5,42.2 11.3,36.7 5.8,34.5 6.6,28.7 3,24 6.6,19.3 5.8,13.5 11.3,11.3 13.5,5.8 19.3,6.6">
+                                </polygon>
+                                <polygon fill="#CCFF90"
+                                    points="34.6,14.6 21,28.2 15.4,22.6 12.6,25.4 21,33.8 37.4,17.4"></polygon>
+                            </svg> Validity 400 days </p>
+                    </div><button data-title="Platinum Gold" data-price="40000 BDT"
+                        class="buyBtn align-middle select-none font-sans font-bold text-center uppercase transition-all disabled:opacity-50 disabled:shadow-none disabled:pointer-events-none text-xs py-2 px-4 shadow-blue-500/20 hover:shadow-lg hover:shadow-blue-500/40 focus:opacity-[0.85] focus:shadow-none active:opacity-[0.85] active:shadow-none block w-full bg-[#0f9b0f] text-white mt-4 border shadow-none rounded-lg"
+                        type="button"> Buy now </button>
+                </div>
+            </div>
+            <div class=" p-5 relative bg-white w-full overflow-hidden border border-gray-300 rounded-lg">
+                <div class=" bg-white">
+                    <h2 class="text-xl text-center font-bold whitespace-nowrap">Platinum VIP</h2>
+                    <p
+                        class="w-7 text-black h-7 bg-none flex justify-center items-center rounded-full absolute top-0 right-0">
+                        3x</p>
+                    <h2 class="text-lg text-center font-bold whitespace-nowrap">80000৳</h2>
+                    <hr class="my-2">
+                    <div class="text-sm text-gray-700">
+                        <p class="flex gap-2 items-center"><svg stroke="currentColor" fill="currentColor"
+                                stroke-width="0" version="1" viewBox="0 0 48 48" enable-background="new 0 0 48 48"
+                                height="1em" width="1em" xmlns="http://www.w3.org/2000/svg">
+                                <polygon fill="#8BC34A"
+                                    points="24,3 28.7,6.6 34.5,5.8 36.7,11.3 42.2,13.5 41.4,19.3 45,24 41.4,28.7 42.2,34.5 36.7,36.7 34.5,42.2 28.7,41.4 24,45 19.3,41.4 13.5,42.2 11.3,36.7 5.8,34.5 6.6,28.7 3,24 6.6,19.3 5.8,13.5 11.3,11.3 13.5,5.8 19.3,6.6">
+                                </polygon>
+                                <polygon fill="#CCFF90"
+                                    points="34.6,14.6 21,28.2 15.4,22.6 12.6,25.4 21,33.8 37.4,17.4"></polygon>
+                            </svg> Daily 500 Ads </p>
+                        <p class="flex gap-2 items-center"><svg stroke="currentColor" fill="currentColor"
+                                stroke-width="0" version="1" viewBox="0 0 48 48" enable-background="new 0 0 48 48"
+                                height="1em" width="1em" xmlns="http://www.w3.org/2000/svg">
+                                <polygon fill="#8BC34A"
+                                    points="24,3 28.7,6.6 34.5,5.8 36.7,11.3 42.2,13.5 41.4,19.3 45,24 41.4,28.7 42.2,34.5 36.7,36.7 34.5,42.2 28.7,41.4 24,45 19.3,41.4 13.5,42.2 11.3,36.7 5.8,34.5 6.6,28.7 3,24 6.6,19.3 5.8,13.5 11.3,11.3 13.5,5.8 19.3,6.6">
+                                </polygon>
+                                <polygon fill="#CCFF90"
+                                    points="34.6,14.6 21,28.2 15.4,22.6 12.6,25.4 21,33.8 37.4,17.4"></polygon>
+                            </svg> Daily Income 50000৳ </p>
+                        <p class="flex gap-2 items-center"><svg stroke="currentColor" fill="currentColor"
+                                stroke-width="0" version="1" viewBox="0 0 48 48" enable-background="new 0 0 48 48"
+                                height="1em" width="1em" xmlns="http://www.w3.org/2000/svg">
+                                <polygon fill="#8BC34A"
+                                    points="24,3 28.7,6.6 34.5,5.8 36.7,11.3 42.2,13.5 41.4,19.3 45,24 41.4,28.7 42.2,34.5 36.7,36.7 34.5,42.2 28.7,41.4 24,45 19.3,41.4 13.5,42.2 11.3,36.7 5.8,34.5 6.6,28.7 3,24 6.6,19.3 5.8,13.5 11.3,11.3 13.5,5.8 19.3,6.6">
+                                </polygon>
+                                <polygon fill="#CCFF90"
+                                    points="34.6,14.6 21,28.2 15.4,22.6 12.6,25.4 21,33.8 37.4,17.4"></polygon>
+                            </svg> Validity 450 days </p>
+                    </div><button data-title="Platinum VIP" data-price="80000 BDT"
+                        class="buyBtn align-middle select-none font-sans font-bold text-center uppercase transition-all disabled:opacity-50 disabled:shadow-none disabled:pointer-events-none text-xs py-2 px-4 shadow-blue-500/20 hover:shadow-lg hover:shadow-blue-500/40 focus:opacity-[0.85] focus:shadow-none active:opacity-[0.85] active:shadow-none block w-full bg-[#0f9b0f] text-white mt-4 border shadow-none rounded-lg"
+                        type="button"> Buy now </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="BuyModal" data-floating-ui-portal="" style="display: none;">
+        <div style="position: fixed; overflow: auto; inset: 0px; z-index: 9999;"><span data-type="inside" tabindex="0"
+                aria-hidden="true" data-floating-ui-focus-guard="" data-aria-hidden="true"
+                style="border: 0px; clip: rect(0px, 0px, 0px, 0px); height: 1px; margin: -1px; overflow: hidden; padding: 0px; position: fixed; white-space: nowrap; width: 1px; top: 0px; left: 0px;"></span>
+            <div class="grid place-items-center fixed w-screen h-screen bg-black bg-opacity-60 backdrop-blur-sm"
+                style="opacity: 1;">
+                <div tabindex="-1"
+                    class="relative bg-white m-4 rounded-lg shadow-2xl text-blue-gray-500 antialiased font-sans text-base font-light leading-relaxed w-3/4 min-w-[75%] max-w-[75%]"
+                    aria-labelledby=":r0:-label" aria-describedby=":r0:-description" id=":r1:" role="dialog"
+                    style="opacity: 1; transform: none;">
+                    <div
+                        class="flex items-center shrink-0 p-4 text-blue-gray-900 antialiased font-sans text-2xl font-semibold leading-snug">
+                        Do you want to buy This Package??</div>
+                    <div
+                        class="relative p-4 text-blue-gray-500 antialiased font-sans text-base font-light leading-relaxed border-t border-t-blue-gray-100 border-b border-b-blue-gray-100 min-w-full">
+                        <h2 class="text-black" id="content">Silver = 500 BDT</h2>
+                    </div>
+                    <div class="flex items-center justify-end shrink-0 flex-wrap p-4 text-blue-gray-500"><button
+                            class="align-middle select-none font-sans font-bold text-center uppercase transition-all disabled:opacity-50 disabled:shadow-none disabled:pointer-events-none text-xs py-3 px-6 rounded-lg text-green-500 hover:bg-green-500/10 active:bg-green-500/30 mr-1"
+                            type="button" id="hideModal"><span>Cancel</span></button><button
+                            class="align-middle select-none font-sans font-bold text-center uppercase transition-all disabled:opacity-50 disabled:shadow-none disabled:pointer-events-none text-xs py-3 px-6 shadow-blue-500/20 hover:shadow-lg hover:shadow-blue-500/40 focus:opacity-[0.85] focus:shadow-none active:opacity-[0.85] active:shadow-none hover:bg-[#0c0ce8] hover:text-white bg-transparent border border-[#0c0ce8] shadow-none text-[#777] flex gap-3 justify-center items-center rounded-full"
+                            type="button">Buy now</button></div>
+                </div>
+            </div><span data-type="inside" tabindex="0" aria-hidden="true" data-floating-ui-focus-guard=""
+                data-aria-hidden="true"
+                style="border: 0px; clip: rect(0px, 0px, 0px, 0px); height: 1px; margin: -1px; overflow: hidden; padding: 0px; position: fixed; white-space: nowrap; width: 1px; top: 0px; left: 0px;"></span>
+        </div>
+    </div>
+
+    <script type="text/javascript">
+        document.querySelectorAll('.buyBtn').forEach(function (btn) {
+            btn.addEventListener('click', function () {
+                document.getElementById('BuyModal').style.display = 'block';
+                document.querySelector('body').style.paddingRight = '0px';
+                // document.querySelector('#BuyModal input[name=id]').value = this.getAttribute('data-id');
+                var content = this.getAttribute('data-title') + ' = ' + this.getAttribute('data-price');
+                document.getElementById('content').textContent = content;
+            });
+        });
+
+        document.getElementById('hideModal').addEventListener('click', function () {
+            document.getElementById('BuyModal').style.display = 'none';
+        });
+
+    </script>
+
+</body>
+
+</html>
